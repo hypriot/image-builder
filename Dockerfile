@@ -2,7 +2,10 @@ FROM debian:jessie
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python-pip \
-    build-essential \
+    build-essential
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libguestfs-tools \
     libncurses5-dev \
     tree \
