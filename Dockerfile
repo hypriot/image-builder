@@ -1,11 +1,10 @@
 FROM debian:jessie
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN  \
+    sudo sed -i 's,http://httpredir.debian.org/debian,http://ftp.us.debian.org/debian/,' /etc/apt/sources.list && \
+    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python-pip \
-    build-essential
-    --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    build-essential \
     libguestfs-tools \
     libncurses5-dev \
     tree \
@@ -24,6 +23,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ruby-dev \
     shellcheck \
     --no-install-recommends && \
+    sudo sed -i 's,http://ftp.us.debian.org/debian/,http://httpredir.debian.org/debian,' /etc/apt/sources.list && \
     rm -rf /var/lib/apt/lists/*
 
 RUN gem update --system && \
