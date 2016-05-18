@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN  \
-    sudo sed -i 's,http://httpredir.debian.org/debian,http://ftp.us.debian.org/debian/,' /etc/apt/sources.list && \
+    sed -i 's,http://httpredir.debian.org/debian,http://ftp.us.debian.org/debian/,' /etc/apt/sources.list && \
     apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python-pip \
     build-essential \
@@ -23,7 +23,7 @@ RUN  \
     ruby-dev \
     shellcheck \
     --no-install-recommends && \
-    sudo sed -i 's,http://ftp.us.debian.org/debian/,http://httpredir.debian.org/debian,' /etc/apt/sources.list && \
+    sed -i 's,http://ftp.us.debian.org/debian/,http://httpredir.debian.org/debian,' /etc/apt/sources.list && \
     rm -rf /var/lib/apt/lists/*
 
 RUN gem update --system && \
