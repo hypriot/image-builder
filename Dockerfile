@@ -8,9 +8,6 @@ RUN  \
     libguestfs-tools \
     libncurses5-dev \
     tree \
-    binfmt-support \
-    qemu \
-    qemu-user-static \
     debootstrap \
     kpartx \
     lvm2 \
