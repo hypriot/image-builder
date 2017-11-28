@@ -4,7 +4,7 @@ machine:
 
 dependencies:
   override:
-    - docker system info
+    - docker info
     - docker image build -t hypriot/image-builder .
 
 test:
