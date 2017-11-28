@@ -5,16 +5,16 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker image build -t hypriot/image-builder .
+    - docker build -t hypriot/image-builder .
 
 test:
   override:
-    - docker container run --rm hypriot/image-builder uname -a
-    - docker container run --rm hypriot/image-builder cat /etc/os-release
+    - docker run --rm hypriot/image-builder uname -a
+    - docker run --rm hypriot/image-builder cat /etc/os-release
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker image push hypriot/image-builder
+      - docker push hypriot/image-builder
