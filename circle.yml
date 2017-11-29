@@ -9,7 +9,8 @@ dependencies:
 
 test:
   override:
-    - docker run hypriot/image-builder uname -a
+    - docker run --rm hypriot/image-builder uname -a
+    - docker run --rm hypriot/image-builder cat /etc/os-release
 
 deployment:
   hub:
