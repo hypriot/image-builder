@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build
+          command: docker build -t hypriot/image-builder .
+      - run:
+          name: Test
+          command: docker run hypriot/image-builder uname -a
+      - deploy:
+          name: Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push hypriot/image-builder
+            fi
